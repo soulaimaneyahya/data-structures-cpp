@@ -1,5 +1,8 @@
 ## data-structures-cpp
 
+- [x] linked-list
+- [x] queue
+
 g++
 ```sh
 g++ --version
