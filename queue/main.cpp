@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-class Queue {
+class Queue
+{
 private:
     int size;
     int front;
@@ -10,46 +11,62 @@ private:
 
 public:
     // constructor
-    Queue(int s) {
+    Queue(int s)
+    {
         size = s;
         front = rear = -1; // init, queue is empty
         // allocate dynamic array in heap
         Q = new int[size];
     }
 
-    void enqueue(int x) {
+    void enqueue(int x)
+    {
         if (rear == size - 1)
+        {
             cout << "Queue is Full" << endl;
-        else {
+        }
+        else
+        {
             rear++;
             Q[rear] = x;
         }
     }
 
-    int dequeue() {
+    int dequeue()
+    {
         int x = -1;
         if (front == rear)
+        {
             cout << "Queue is Empty" << endl;
-        else {
+        }
+        else
+        {
             front++;
             x = Q[front];
         }
+
         return x;
     }
 
-    void display() {
+    void display()
+    {
         for (int i = front + 1; i <= rear; i++)
+        {
             cout << Q[i] << " ";
+        }
+
         cout << endl;
     }
 
     // Destructor is called and memory is freed
-    ~Queue() {
+    ~Queue()
+    {
         delete[] Q;
     }
 };
 
-int main() {
+int main()
+{
     int size, n, val;
 
     cout << "Enter size of queue: ";
@@ -61,7 +78,8 @@ int main() {
     cout << "Enter number of elements to enqueue: ";
     cin >> n;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         cout << "Enter element " << i + 1 << ": ";
         cin >> val;
         q.enqueue(val);

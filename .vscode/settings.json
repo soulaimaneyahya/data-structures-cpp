@@ -1,5 +1,7 @@
 {
+    // treat files named new and iostream as C++ (cpp) files
     "files.associations": {
-        "new": "cpp"
+        "new": "cpp",
+        "iostream": "cpp"
     }
 }
