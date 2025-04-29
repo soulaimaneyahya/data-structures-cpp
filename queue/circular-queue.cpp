@@ -8,8 +8,6 @@ private:
     int size;
     int front;
     int rear;
-    // pointer Q is stored on the stack, pointing to an array in the heap.
-    // store the address of a dynamic array for the queue
     int *Q; // dynamic heap array to store queue elements
 
 public:
@@ -18,38 +16,37 @@ public:
     {
         setQueue(new int[size]) // allocate dynamic array in heap
             .setSize(s)
-            .setFront(-1)
-            .setRear(-1); // init, queue is empty
+            .setFront(0)
+            .setRear(0); // init, queue is empty
     }
 
     void enqueue(int x)
     {
-        if (getRear() == size - 1)
+        // In circular queue, rear is one position before front when queue is full
+        if (getRearPosition() == getFront())
         {
             cout << "Queue is Full" << endl;
         }
         else
         {
-            setRear(getRear() + 1);
+            setRear(getRearPosition());
             Q[getRear()] = x;
         }
     }
 
     int dequeue()
     {
-        // If queue empty, returns -1.
         int x = -1;
 
         if (getFront() == getRear())
         {
             cout << "Queue is Empty" << endl;
-            getRear() == size - 1;
         }
         else
         {
-            setFront(getFront() + 1);
             x = Q[getFront()];
-            Q[getFront()] = 0; // Clear the memory (optional)
+            Q[getFront()] = 0; // Optional: Clear the memory
+            setFront((getFront() + 1) % getSize());
         }
 
         return x;
@@ -63,9 +60,11 @@ public:
         }
         else
         {
-            for (int i = getFront() + 1; i <= getRear(); i++)
+            int i = getFront();
+            while (i != getRear())
             {
                 cout << Q[i] << " ";
+                i = (i + 1) % getSize();
             }
         }
 
@@ -122,6 +121,11 @@ public:
         rear = r;
 
         return *this;
+    }
+
+    int getRearPosition() const
+    {
+        return (getRear() + 1) % getSize();
     }
 
     // Destructor is called and memory is freed
