@@ -11,6 +11,5 @@ g++ --version
 
 Running
 ```sh
-g++ -o main main.cpp
-./main
+g++ -o main main.cpp && ./main
 ```
