@@ -14,23 +14,24 @@ public:
     // constructor
     Queue(int s)
     {
-        setQueue(new int[size]) // allocate dynamic array in heap
-            .setSize(s)
-            .setFront(0)
-            .setRear(0); // init, queue is empty
+        size = s;
+        front = 0;
+        // init, queue is empty
+        rear = 0;
+        Q = new int[size]; // allocate dynamic array in heap
     }
 
     void enqueue(int x)
     {
         // In circular queue, rear is one position before front when queue is full
-        if (getRearPosition() == getFront())
+        if (getRearPosition() == front)
         {
             cout << "Queue is Full" << endl;
         }
         else
         {
-            setRear(getRearPosition());
-            Q[getRear()] = x;
+            rear = getRearPosition();
+            Q[rear] = x;
         }
     }
 
@@ -38,15 +39,15 @@ public:
     {
         int x = -1;
 
-        if (getFront() == getRear())
+        if (front == rear)
         {
             cout << "Queue is Empty" << endl;
         }
         else
         {
-            x = Q[getFront()];
-            Q[getFront()] = 0; // Optional: Clear the memory
-            setFront((getFront() + 1) % getSize());
+            x = Q[front];
+            Q[front] = 0; // Optional: Clear the memory
+            front = (front + 1) % size;
         }
 
         return x;
@@ -54,17 +55,17 @@ public:
 
     void display()
     {
-        if (getFront() == getRear())
+        if (front == rear)
         {
             cout << "Queue is Empty" << endl;
         }
         else
         {
-            int i = getFront();
-            while (i != getRear())
+            int i = front;
+            while (i != rear)
             {
                 cout << Q[i] << " ";
-                i = (i + 1) % getSize();
+                i = (i + 1) % size;
             }
         }
 
@@ -125,7 +126,7 @@ public:
 
     int getRearPosition() const
     {
-        return (getRear() + 1) % getSize();
+        return (rear + 1) % size;
     }
 
     // Destructor is called and memory is freed

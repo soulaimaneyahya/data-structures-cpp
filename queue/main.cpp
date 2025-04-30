@@ -16,22 +16,23 @@ public:
     // constructor
     Queue(int s)
     {
-        setQueue(new int[size]) // allocate dynamic array in heap
-            .setSize(s)
-            .setFront(-1)
-            .setRear(-1); // init, queue is empty
+        size = s;
+        front = -1;
+        // init, queue is empty
+        rear = -1;
+        Q = new int[size]; // allocate dynamic array in heap
     }
 
     void enqueue(int x)
     {
-        if (getRear() == size - 1)
+        if (rear == size - 1)
         {
             cout << "Queue is Full" << endl;
         }
         else
         {
-            setRear(getRear() + 1);
-            Q[getRear()] = x;
+            rear++;
+            Q[rear] = x;
         }
     }
 
@@ -40,16 +41,16 @@ public:
         // If queue empty, returns -1.
         int x = -1;
 
-        if (getFront() == getRear())
+        if (front == rear)
         {
             cout << "Queue is Empty" << endl;
-            getRear() == size - 1;
+            rear == size - 1;
         }
         else
         {
-            setFront(getFront() + 1);
-            x = Q[getFront()];
-            Q[getFront()] = 0; // Clear the memory (optional)
+            front++;
+            x = Q[front];
+            Q[front] = 0; // Clear the memory (optional)
         }
 
         return x;
@@ -57,13 +58,13 @@ public:
 
     void display()
     {
-        if (getFront() == getRear())
+        if (front == rear)
         {
             cout << "Queue is Empty" << endl;
         }
         else
         {
-            for (int i = getFront() + 1; i <= getRear(); i++)
+            for (int i = front + 1; i <= rear; i++)
             {
                 cout << Q[i] << " ";
             }
@@ -128,7 +129,7 @@ public:
     ~Queue()
     {
         delete[] Q;
-        setQueue(nullptr);
+        Q = nullptr;
     }
 };
 
