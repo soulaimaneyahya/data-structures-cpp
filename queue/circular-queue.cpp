@@ -61,8 +61,8 @@ public:
         }
         else
         {
-            int i = front;
-            while (i != rear)
+            int i = front+1;
+            while (i != getRearPosition())
             {
                 cout << Q[i] << " ";
                 i = (i + 1) % size;
