@@ -125,6 +125,16 @@ public:
         return *this;
     }
 
+    bool isEmpty() const
+    {
+        return front == rear;
+    }
+
+    bool isFull() const
+    {
+        return rear == size - 1;
+    }
+
     // Destructor is called and memory is freed
     ~Queue()
     {

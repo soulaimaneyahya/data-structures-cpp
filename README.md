@@ -2,6 +2,7 @@
 
 - [x] linked-list
 - [x] queue
+- [x] stack
 
 g++
 ```sh

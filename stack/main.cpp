@@ -18,6 +18,45 @@ public:
         S = new int[size]; // allocate dynamic array in heap
     }
 
+    void push(int x)
+    {
+        if (isFull())
+        {
+            cout << "Stack overflow" << endl;
+        }
+        else
+        {
+            top++;
+            S[top] = x; // push element x onto stack
+        }
+    }
+
+    int pop()
+    {
+        int x = -1;
+
+        if (isEmpty())
+        {
+            cout << "Stack underflow" << endl;
+        }
+        else
+        {
+            x = S[top]; // pop element from stack
+            top--;
+        }
+
+        return x;
+    }
+
+    void display()
+    {
+        for (int i = top; i >= 0; i--)
+        {
+            cout << S[i] << " ";
+        }
+        cout << endl;
+    }
+
     int *getStack()
     {
         return S;
@@ -56,6 +95,16 @@ public:
         return *this;
     }
 
+    bool isEmpty() const
+    {
+        return top == -1;
+    }
+
+    bool isFull() const
+    {
+        return top == size - 1;
+    }
+
     // Destructor is called and memory is freed
     ~Stack()
     {
@@ -66,5 +115,24 @@ public:
 
 int main()
 {
-    return 0;
+    int size, n, val;
+
+    cout << "Enter size of stack: ";
+    cin >> size;
+
+    // constructor is called
+    Stack st(size);
+
+    cout << "Enter number of elements to push: ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter element " << i + 1 << ": ";
+        cin >> val;
+        st.push(val);
+    }
+
+    cout << "Stack elements: ";
+    st.display();
 }

@@ -129,6 +129,16 @@ public:
         return (rear + 1) % size;
     }
 
+    bool isEmpty() const
+    {
+        return front == rear;
+    }
+
+    bool isFull() const
+    {
+        return getRearPosition() == front;
+    }
+
     // Destructor is called and memory is freed
     ~Queue()
     {
