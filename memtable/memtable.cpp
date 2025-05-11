@@ -15,12 +15,12 @@ public:
      * 
      * @param  string key
      * @param  string value
-     * @param  string timestamp
+     * @param  int64_t timestamp
      * @return void
      */
-    void insert(const string &key, const string &value, const string &timestamp)
+    void insert(const string &key, const string &value, const int64_t &timestamp)
     {
-        memTable[key] = timestamp + ":" + value;
+        memTable[key] = to_string(timestamp) + ":" + value;
     }
 
     /**
@@ -94,9 +94,9 @@ int main()
     MemTable mem;
 
     // Insert key-value pairs
-    mem.insert("user_001", "Alice", "1704067200");
-    mem.insert("user_003", "Bob", "1704153600");
-    mem.insert("user_005", "Charlie", "1704240000");
+    mem.insert("user_001", "Alice", 1704067200);
+    mem.insert("user_003", "Bob", 1704153600);
+    mem.insert("user_005", "Charlie", 1704240000);
 
     // Access and print data
     cout << "Accessing and printing data:" << endl;
